@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		4928D924294F8F5E005ABA2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D923294F8F5E005ABA2B /* AppDelegate.swift */; };
 		4928D926294F8F5E005ABA2B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D925294F8F5E005ABA2B /* SceneDelegate.swift */; };
-		4928D928294F8F5E005ABA2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D927294F8F5E005ABA2B /* ViewController.swift */; };
+		4928D928294F8F5E005ABA2B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D927294F8F5E005ABA2B /* MapViewController.swift */; };
 		4928D92B294F8F5E005ABA2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4928D929294F8F5E005ABA2B /* Main.storyboard */; };
 		4928D92D294F8F60005ABA2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4928D92C294F8F60005ABA2B /* Assets.xcassets */; };
 		4928D930294F8F60005ABA2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4928D92E294F8F60005ABA2B /* LaunchScreen.storyboard */; };
 		4928D93B294F8F61005ABA2B /* Weather_mapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D93A294F8F61005ABA2B /* Weather_mapTests.swift */; };
 		4928D945294F8F61005ABA2B /* Weather_mapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D944294F8F61005ABA2B /* Weather_mapUITests.swift */; };
 		4928D947294F8F61005ABA2B /* Weather_mapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D946294F8F61005ABA2B /* Weather_mapUITestsLaunchTests.swift */; };
+		4928D957294F92B5005ABA2B /* UserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D956294F92B5005ABA2B /* UserLocationView.swift */; };
+		4928D95A294F92E0005ABA2B /* UIView + Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D959294F92E0005ABA2B /* UIView + Constraints.swift */; };
+		4928D95C294F92F7005ABA2B /* With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D95B294F92F7005ABA2B /* With.swift */; };
+		4928D95E294F9313005ABA2B /* MKPointAnnotation + Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D95D294F9313005ABA2B /* MKPointAnnotation + Init.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +43,7 @@
 		4928D920294F8F5E005ABA2B /* Weather map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4928D923294F8F5E005ABA2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4928D925294F8F5E005ABA2B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4928D927294F8F5E005ABA2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4928D927294F8F5E005ABA2B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4928D92A294F8F5E005ABA2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4928D92C294F8F60005ABA2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4928D92F294F8F60005ABA2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +53,10 @@
 		4928D940294F8F61005ABA2B /* Weather mapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Weather mapUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4928D944294F8F61005ABA2B /* Weather_mapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_mapUITests.swift; sourceTree = "<group>"; };
 		4928D946294F8F61005ABA2B /* Weather_mapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather_mapUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4928D956294F92B5005ABA2B /* UserLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationView.swift; sourceTree = "<group>"; };
+		4928D959294F92E0005ABA2B /* UIView + Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Constraints.swift"; sourceTree = "<group>"; };
+		4928D95B294F92F7005ABA2B /* With.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = With.swift; sourceTree = "<group>"; };
+		4928D95D294F9313005ABA2B /* MKPointAnnotation + Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation + Init.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +107,11 @@
 		4928D922294F8F5E005ABA2B /* Weather map */ = {
 			isa = PBXGroup;
 			children = (
-				4928D923294F8F5E005ABA2B /* AppDelegate.swift */,
-				4928D925294F8F5E005ABA2B /* SceneDelegate.swift */,
-				4928D927294F8F5E005ABA2B /* ViewController.swift */,
-				4928D929294F8F5E005ABA2B /* Main.storyboard */,
+				4928D953294F91F4005ABA2B /* App */,
+				4928D955294F9205005ABA2B /* Map */,
+				4928D954294F91FC005ABA2B /* Storyboards */,
+				4928D958294F92C7005ABA2B /* Utils */,
 				4928D92C294F8F60005ABA2B /* Assets.xcassets */,
-				4928D92E294F8F60005ABA2B /* LaunchScreen.storyboard */,
 				4928D931294F8F60005ABA2B /* Info.plist */,
 			);
 			path = "Weather map";
@@ -125,6 +132,43 @@
 				4928D946294F8F61005ABA2B /* Weather_mapUITestsLaunchTests.swift */,
 			);
 			path = "Weather mapUITests";
+			sourceTree = "<group>";
+		};
+		4928D953294F91F4005ABA2B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4928D923294F8F5E005ABA2B /* AppDelegate.swift */,
+				4928D925294F8F5E005ABA2B /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4928D954294F91FC005ABA2B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4928D929294F8F5E005ABA2B /* Main.storyboard */,
+				4928D92E294F8F60005ABA2B /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4928D955294F9205005ABA2B /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				4928D927294F8F5E005ABA2B /* MapViewController.swift */,
+				4928D956294F92B5005ABA2B /* UserLocationView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		4928D958294F92C7005ABA2B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4928D959294F92E0005ABA2B /* UIView + Constraints.swift */,
+				4928D95B294F92F7005ABA2B /* With.swift */,
+				4928D95D294F9313005ABA2B /* MKPointAnnotation + Init.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4928D928294F8F5E005ABA2B /* ViewController.swift in Sources */,
+				4928D957294F92B5005ABA2B /* UserLocationView.swift in Sources */,
+				4928D95C294F92F7005ABA2B /* With.swift in Sources */,
+				4928D95E294F9313005ABA2B /* MKPointAnnotation + Init.swift in Sources */,
+				4928D928294F8F5E005ABA2B /* MapViewController.swift in Sources */,
 				4928D924294F8F5E005ABA2B /* AppDelegate.swift in Sources */,
 				4928D926294F8F5E005ABA2B /* SceneDelegate.swift in Sources */,
+				4928D95A294F92E0005ABA2B /* UIView + Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +488,7 @@
 				DEVELOPMENT_TEAM = WG482W7ASB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather map/Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Hui;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -472,6 +521,7 @@
 				DEVELOPMENT_TEAM = WG482W7ASB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Weather map/Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Hui;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
