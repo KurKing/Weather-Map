@@ -10,11 +10,9 @@ import MapKit
 
 class UserLocationView: MKAnnotationView {
     
-    static let identifier = "UserLocationView"
-    
     private let locationImageView: UIImageView = {
         
-        let imageView = withAutoloyaut(UIImageView(image: .init(named: "Location-image")))
+        let imageView = withAutoloyaut(UIImageView(image: .location))
         
         imageView.contentMode = .scaleAspectFit
         
@@ -39,4 +37,3 @@ class UserLocationView: MKAnnotationView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

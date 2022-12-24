@@ -20,6 +20,8 @@ class MapViewController: UIViewController {
     
     let locationManager = CLLocationManager()
     
+    private lazy var lastpinCenter: CLLocationCoordinate2D = mapView.centerCoordinate
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -40,7 +42,8 @@ class MapViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.setCameraZoomRange(MapConstants.defaultCameraZoomRange, animated: true)
         
-        mapView.register(UserLocationView.self, forAnnotationViewWithReuseIdentifier: UserLocationView.identifier)
+        mapView.register(UserLocationView.self)
+        mapView.register(WeatherPinView.self)
     }
 }
 
@@ -48,24 +51,31 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        //        if annotation is MKUserLocation {
+        if annotation is MKUserLocation {
+            
+            return mapView.dequeueReusableView(type: UserLocationView.self)
+        }
         
-        return mapView.dequeueReusableAnnotationView(withIdentifier: UserLocationView.identifier)
-        //        }
-        
-        //        return nil
+        return with(mapView.dequeueReusableView(type: WeatherPinView.self)) {
+            $0.setup(temperature: 27, weatherIcon: .sunWithCloudsWeatherIcon)
+        }
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         
-        let pin = MKPointAnnotation.pinInCenter(of: mapView)
-        
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+        if lastpinCenter.distance(to: mapView.centerCoordinate) > 1 {
             
-            mapView.removeAnnotation(pin)
+            self.lastpinCenter = mapView.centerCoordinate
+            
+            let pin = MKPointAnnotation.pinInCenter(of: mapView)
+            
+            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
+                
+                mapView.removeAnnotation(pin)
+            }
+            
+            mapView.addAnnotation(pin)
         }
-        
-        mapView.addAnnotation(pin)
     }
 }
 
