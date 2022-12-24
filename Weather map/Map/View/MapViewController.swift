@@ -31,6 +31,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         setupMapView()
+        bindToViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,13 +46,13 @@ class MapViewController: UIViewController {
     
     private func bindToViewModel() {
         
-        viewModel.weatherPinCreationStream.subscribe { [weak self] location in
+        viewModel.weatherPinCreationStream.subscribe(onNext: { [weak self] location in
             
             let pin = MKPointAnnotation()
             pin.coordinate = location
             
             self?.mapView.addAnnotation(pin)
-        }.disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
     }
     
     private func setupMapView() {

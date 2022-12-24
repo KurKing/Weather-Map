@@ -7,16 +7,22 @@ target 'Weather map' do
 
   pod 'RxSwift', '6.5.0'
   pod 'RxCocoa', '6.5.0'
+  pod 'Alamofire'
+  pod 'SwiftyJSON', '~> 4.0'
 
   target 'Weather mapTests' do
     inherit! :search_paths
     pod 'RxBlocking', '6.5.0'
     pod 'RxTest', '6.5.0'
+    pod 'Alamofire'
+    pod 'SwiftyJSON', '~> 4.0'
   end
 
   target 'Weather mapUITests' do
     pod 'RxBlocking', '6.5.0'
     pod 'RxTest', '6.5.0'
+    pod 'Alamofire'
+    pod 'SwiftyJSON', '~> 4.0'
   end
 
 end
