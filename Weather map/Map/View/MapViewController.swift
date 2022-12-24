@@ -7,6 +7,9 @@
 
 import UIKit
 import MapKit
+import RxSwift
+import RxCocoa
+import RxRelay
 
 enum MapConstants {
     
@@ -18,35 +21,51 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    let locationManager = CLLocationManager()
+    private let viewModel: MapViewModelProtocol = MapViewModel()
+    private let disposeBag = DisposeBag()
     
-    private lazy var lastpinCenter: CLLocationCoordinate2D = mapView.centerCoordinate
-    
+    private let locationManager = LocationManager()
+        
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         setupMapView()
-        locationManager.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAuthorization { [weak self] location in
+            
+            self?.mapView.setCenter(location, animated: true)
+        }
+    }
+    
+    private func bindToViewModel() {
+        
+        viewModel.weatherPinCreationStream.subscribe { [weak self] location in
+            
+            let pin = MKPointAnnotation()
+            pin.coordinate = location
+            
+            self?.mapView.addAnnotation(pin)
+        }.disposed(by: disposeBag)
     }
     
     private func setupMapView() {
+        
         mapView.delegate = self
         mapView.showsUserLocation = true
-        mapView.setCameraZoomRange(MapConstants.defaultCameraZoomRange, animated: true)
+        mapView.setCameraZoomRange(MapConstants.defaultCameraZoomRange, animated: false)
         
         mapView.register(UserLocationView.self)
         mapView.register(WeatherPinView.self)
     }
 }
 
+// MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -56,36 +75,20 @@ extension MapViewController: MKMapViewDelegate {
             return mapView.dequeueReusableView(type: UserLocationView.self)
         }
         
-        return with(mapView.dequeueReusableView(type: WeatherPinView.self)) {
-            $0.setup(temperature: 27, weatherIcon: .sunWithCloudsWeatherIcon)
+        guard let weatherPinData = viewModel.data(for: annotation.coordinate) else {
+            return nil
         }
+        
+        let weatherView = mapView.dequeueReusableView(type: WeatherPinView.self)
+        
+        weatherView.setup(temperature: weatherPinData.temperature,
+                          weatherIcon: weatherPinData.icon)
+        
+        return weatherView
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
         
-        if lastpinCenter.distance(to: mapView.centerCoordinate) > 1 {
-            
-            self.lastpinCenter = mapView.centerCoordinate
-            
-            let pin = MKPointAnnotation.pinInCenter(of: mapView)
-            
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-                
-                mapView.removeAnnotation(pin)
-            }
-            
-            mapView.addAnnotation(pin)
-        }
-    }
-}
-
-extension MapViewController: CLLocationManagerDelegate {
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    
-        if let location = manager.location {
-            
-            mapView.setCenter(location.coordinate, animated: true)
-        }
+        viewModel.mapCenter.accept(mapView.centerCoordinate)
     }
 }

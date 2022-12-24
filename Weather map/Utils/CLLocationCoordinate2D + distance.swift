@@ -19,4 +19,9 @@ extension CLLocationCoordinate2D {
         
         return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))
     }
+    
+    static var zero: CLLocationCoordinate2D {
+        
+        .init(latitude: 0, longitude: 0)
+    }
 }
