@@ -11,17 +11,24 @@ extension CLLocationCoordinate2D {
     
     func distance(to coordinate: CLLocationCoordinate2D) -> Double {
         
-        let x1 = latitude
-        let y1 = longitude
+        let location1 = CLLocation(coordinate: self)
+        let location2 = CLLocation(coordinate: coordinate)
         
-        let x2 = coordinate.latitude
-        let y2 = coordinate.longitude
-        
-        return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1))
+        return location1.distance(from: location2)
     }
     
     static var zero: CLLocationCoordinate2D {
         
         .init(latitude: 0, longitude: 0)
+    }
+    
+    var stringRepresentation: String { "\(latitude) \(longitude)" }
+}
+
+extension CLLocation {
+    
+    convenience init(coordinate: CLLocationCoordinate2D) {
+        
+        self.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
     }
 }

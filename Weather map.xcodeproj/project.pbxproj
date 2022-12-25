@@ -35,6 +35,7 @@
 		49D69BB02957980C006D68D1 /* RemoteWeatherStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BAF2957980C006D68D1 /* RemoteWeatherStorage.swift */; };
 		49D69BB229579819006D68D1 /* LocalWeatherStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BB129579819006D68D1 /* LocalWeatherStorage.swift */; };
 		49D69BB629579FE3006D68D1 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BB529579FE3006D68D1 /* City.swift */; };
+		49D69BB82958A8A1006D68D1 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BB72958A8A1006D68D1 /* Keys.swift */; };
 		70776F8A824F33461309155F /* Pods_Weather_map_Weather_mapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8858AB42D54B904F40EFF63A /* Pods_Weather_map_Weather_mapUITests.framework */; };
 		D6D304D83B43D73053A4EF3D /* Pods_Weather_map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C65F896083CD04771AB83BCC /* Pods_Weather_map.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		49D69BAF2957980C006D68D1 /* RemoteWeatherStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherStorage.swift; sourceTree = "<group>"; };
 		49D69BB129579819006D68D1 /* LocalWeatherStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWeatherStorage.swift; sourceTree = "<group>"; };
 		49D69BB529579FE3006D68D1 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		49D69BB72958A8A1006D68D1 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		6B5895A244A6D40F9A56CCF7 /* Pods-Weather map-Weather mapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather map-Weather mapUITests.release.xcconfig"; path = "Target Support Files/Pods-Weather map-Weather mapUITests/Pods-Weather map-Weather mapUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8520A4891BCA10A5244FEC5E /* Pods-Weather map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather map.debug.xcconfig"; path = "Target Support Files/Pods-Weather map/Pods-Weather map.debug.xcconfig"; sourceTree = "<group>"; };
 		8858AB42D54B904F40EFF63A /* Pods_Weather_map_Weather_mapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather_map_Weather_mapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 				4928D955294F9205005ABA2B /* Map */,
 				4928D954294F91FC005ABA2B /* Storyboards */,
 				4928D958294F92C7005ABA2B /* Utils */,
+				49D69BB72958A8A1006D68D1 /* Keys.swift */,
 				4928D92C294F8F60005ABA2B /* Assets.xcassets */,
 				4928D931294F8F60005ABA2B /* Info.plist */,
 			);
@@ -581,6 +584,7 @@
 				4928D926294F8F5E005ABA2B /* SceneDelegate.swift in Sources */,
 				49D69B91295768CB006D68D1 /* WeatherPinView.swift in Sources */,
 				4928D95A294F92E0005ABA2B /* UIView + Constraints.swift in Sources */,
+				49D69BB82958A8A1006D68D1 /* Keys.swift in Sources */,
 				49D69B9C29577B43006D68D1 /* MapViewModel.swift in Sources */,
 				49D69BB02957980C006D68D1 /* RemoteWeatherStorage.swift in Sources */,
 				49D69BA029577C5E006D68D1 /* WeatherMapPinData.swift in Sources */,

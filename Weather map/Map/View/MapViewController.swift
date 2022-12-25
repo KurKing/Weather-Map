@@ -46,7 +46,10 @@ class MapViewController: UIViewController {
     
     private func bindToViewModel() {
         
-        viewModel.weatherPinCreationStream.subscribe(onNext: { [weak self] location in
+        viewModel.weatherPinCreationStream
+            .subscribe(on: MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] location in
             
             let pin = MKPointAnnotation()
             pin.coordinate = location

@@ -13,13 +13,13 @@ import SwiftyJSON
 class RemoteCitiesStorage {
     
     private let headers: HTTPHeaders = [
-        "X-RapidAPI-Key": "88d8cfd33bmsh3f3bd763b5f692dp1c9432jsn485a666144a1",
+        "X-RapidAPI-Key": Keys.cityApiKey,
         "X-RapidAPI-Host": "world-geo-data.p.rapidapi.com"
     ]
     
     private let baseUrl = URL(string: "https://world-geo-data.p.rapidapi.com/cities/nearby")!
     
-    func request(latitude: Double, longitude: Double, minimumCityPopulation: Int = 50000) -> Observable<[City]> {
+    func fetch(latitude: Double, longitude: Double, minimumCityPopulation: Int = 50000) -> Observable<[City]> {
         
         let parameters: [String: Any] = [
             "latitude": latitude,

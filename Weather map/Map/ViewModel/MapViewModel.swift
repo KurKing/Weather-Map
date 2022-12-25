@@ -32,6 +32,7 @@ class MapViewModel: MapViewModelProtocol {
     private var lastUpdateCoordinate: CLLocationCoordinate2D?
     
     private var cities: [String: City] = [:]
+    private var temperature: [String: Int] = [:]
     
     init() {
         
@@ -40,7 +41,12 @@ class MapViewModel: MapViewModelProtocol {
 
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData? {
         
-        return .init(icon: .sunWithCloudsWeatherIcon, temperature: 27)
+        guard let temperature = temperature[location.stringRepresentation] else {
+            
+            return nil
+        }
+        
+        return .init(icon: .sunWithCloudsWeatherIcon, temperature: temperature)
     }
     
     private func bindToMapCenter() {
@@ -51,7 +57,7 @@ class MapViewModel: MapViewModelProtocol {
             
             if let lastUpdateCoordinate = self.lastUpdateCoordinate {
                 
-                if lastUpdateCoordinate.distance(to: location) > 3 {
+                if lastUpdateCoordinate.distance(to: location) > 250000 {
                     
                     self.fetchInfo(for: location)
                 }
@@ -63,22 +69,34 @@ class MapViewModel: MapViewModelProtocol {
         }).disposed(by: disposeBag)
     }
     
-    let storage = RemoteCitiesStorage()
+    let citiesStorage = RemoteCitiesStorage()
+    let weatherStorage = RemoteWeatherStorage()
 
     private func fetchInfo(for location: CLLocationCoordinate2D) {
+        
         lastUpdateCoordinate = location
         
-        storage.request(latitude: location.latitude, longitude: location.longitude)
+        citiesStorage.fetch(latitude: location.latitude, longitude: location.longitude)
             .subscribe(onNext: { [weak self] newCities in
                 
                 guard let self = self else { return }
                 
                 newCities.filter({ self.cities[$0.name] == nil })
-                    .forEach({
-                        self.cities[$0.name] = $0
-                        self._weatherPinCreationStream.accept(.init(latitude: $0.latitude, longitude: $0.longitude))
+                    .forEach({ city in
+                        
+                        self.cities[city.name] = city
+                        
+                        self.weatherStorage.fetch(latitude: city.latitude, longitude: city.longitude)
+                            .subscribe(onNext: { [weak self] temperature in
+                                
+                                guard let self = self else { return }
+                                
+                                self.temperature[city.location.stringRepresentation] = temperature
+                                self._weatherPinCreationStream.accept(.init(latitude: city.latitude,
+                                                                            longitude: city.longitude))
+                            }).disposed(by: self.disposeBag)
+                        
                     })
-                
             }).disposed(by: disposeBag)
     }
 }

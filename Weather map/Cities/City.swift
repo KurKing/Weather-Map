@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 import SwiftyJSON
 
 struct City {
@@ -13,6 +14,11 @@ struct City {
     let name: String
     let latitude: Double
     let longitude: Double
+    
+    var location: CLLocationCoordinate2D {
+        
+        .init(latitude: latitude, longitude: longitude)
+    }
     
     init?(json: JSON) {
         
