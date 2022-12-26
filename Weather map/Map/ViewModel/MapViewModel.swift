@@ -21,7 +21,6 @@ protocol MapViewModelProtocol {
 class MapViewModel: MapViewModelProtocol {
     
     var weatherPinCreationStream: Observable<CLLocationCoordinate2D> {
-        
         _weatherPinCreationStream.compactMap({ $0 }).asObservable()
     }
     private let _weatherPinCreationStream = BehaviorRelay<CLLocationCoordinate2D?>(value: nil)
@@ -29,19 +28,20 @@ class MapViewModel: MapViewModelProtocol {
     let mapCenter = BehaviorRelay<CLLocationCoordinate2D>(value: .zero)
     
     private let disposeBag = DisposeBag()
-    private var lastUpdateCoordinate: CLLocationCoordinate2D?
     
-    private var cities: [String: City] = [:]
-    private var weather: [String: WeatherItem] = [:]
+    private var weather: [String: CityWeatherModel] = [:]
+    let weatherStorage = RemoteWeatherStorage()
+    
+    private let citiesSevice = CitiesService()
     
     init() {
         
-        bindToMapCenter()
+        bindToObservers()
     }
-
+    
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData? {
         
-        guard let weatherItem = weather[location.stringRepresentation] else {
+        guard let weatherItem = weather[location.stringRepresentation]?.weatherList.first else {
             
             return nil
         }
@@ -49,54 +49,33 @@ class MapViewModel: MapViewModelProtocol {
         return .init(icon: weatherItem.icon, temperature: weatherItem.temperature)
     }
     
-    private func bindToMapCenter() {
+    private func bindToObservers() {
         
-        mapCenter.subscribe(onNext: { [weak self] location in
+        mapCenter.skip(1)
+            .subscribe(onNext: { [weak self] location in
             
-            guard let self = self else { return }
+            self?.citiesSevice.getCities(for: location)
+        }).disposed(by: disposeBag)
+        
+        citiesSevice.citiesSteam.subscribe(onNext: { [weak self] city in
             
-            if let lastUpdateCoordinate = self.lastUpdateCoordinate {
-                
-                if lastUpdateCoordinate.distance(to: location) > 250000 {
-                    
-                    self.fetchInfo(for: location)
-                }
-                
-                return
-            }
-            
-            self.fetchInfo(for: location)
+            self?.fetchWeather(for: city)
         }).disposed(by: disposeBag)
     }
     
-    let citiesStorage = RemoteCitiesStorage()
-    let weatherStorage = RemoteWeatherStorage()
-
-    private func fetchInfo(for location: CLLocationCoordinate2D) {
+    private func fetchWeather(for city: City) {
         
-        lastUpdateCoordinate = location
-        
-        citiesStorage.fetch(latitude: location.latitude, longitude: location.longitude)
-            .subscribe(onNext: { [weak self] newCities in
+        weatherStorage
+            .fetch(latitude: city.latitude,
+                   longitude: city.longitude)
+            .subscribe(onNext: { [weak self] weatherList in
                 
                 guard let self = self else { return }
                 
-                newCities.filter({ self.cities[$0.name] == nil })
-                    .forEach({ city in
-                        
-                        self.cities[city.name] = city
-                        
-                        self.weatherStorage.fetch(latitude: city.latitude, longitude: city.longitude)
-                            .subscribe(onNext: { [weak self] weatherItem in
-                                
-                                guard let self = self else { return }
-                                
-                                self.weather[city.location.stringRepresentation] = weatherItem
-                                self._weatherPinCreationStream.accept(.init(latitude: city.latitude,
-                                                                            longitude: city.longitude))
-                            }).disposed(by: self.disposeBag)
-                        
-                    })
-            }).disposed(by: disposeBag)
+                self.weather[city.location.stringRepresentation] = .init(city: city,
+                                                                         weatherList: weatherList)
+                
+                self._weatherPinCreationStream.accept(city.location)
+            }).disposed(by: self.disposeBag)
     }
 }

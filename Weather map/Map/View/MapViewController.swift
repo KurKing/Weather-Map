@@ -22,10 +22,11 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     private let viewModel: MapViewModelProtocol = MapViewModel()
+    private let locationManager = LocationManager()
+    private let router: Router = MapRouter()
+    
     private let disposeBag = DisposeBag()
     
-    private let locationManager = LocationManager()
-        
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -87,6 +88,13 @@ extension MapViewController: MKMapViewDelegate {
         
         weatherView.setup(temperature: weatherPinData.temperature,
                           weatherIcon: weatherPinData.icon)
+        
+        weatherView.onTap = { [weak self] location in
+            
+            guard let self = self else { return }
+            
+            self.router.route(to: .weatherDetails, context: self, parameter: location)
+        }
         
         return weatherView
     }

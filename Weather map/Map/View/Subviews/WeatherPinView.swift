@@ -10,6 +10,8 @@ import MapKit
 
 class WeatherPinView: MKAnnotationView {
     
+    var onTap: ((CLLocationCoordinate2D)->())?
+    
     private let pinImageView: UIImageView = {
         
         let imageView = withAutoloyaut(UIImageView(image: .mapPin))
@@ -92,8 +94,9 @@ class WeatherPinView: MKAnnotationView {
     
     @objc private func pinTapped() {
         
-        // TODO: - route weather details screen
-        
-        print("Tapped: \(temperatureLabel.text ?? "") \(self.annotation?.coordinate ?? .zero)")
+        if let onTap = onTap, let coordinate = annotation?.coordinate {
+            
+            onTap(coordinate)
+        }
     }
 }

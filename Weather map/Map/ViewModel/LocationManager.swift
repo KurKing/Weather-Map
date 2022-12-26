@@ -11,6 +11,8 @@ import CoreLocation
 class LocationManager: NSObject {
     
     private var onGetLocation: ((CLLocationCoordinate2D)->())?
+    private var isAutorized = false
+    
     private let locationManager = CLLocationManager()
     
     override init() {
@@ -20,18 +22,29 @@ class LocationManager: NSObject {
         locationManager.delegate = self
     }
     
-    func requestAuthorization(with closure: ((CLLocationCoordinate2D)->())? = nil) {
+    func requestAuthorization(with closure: @escaping((CLLocationCoordinate2D)->())) {
         
-        onGetLocation = closure
+        if !isAutorized {
+            
+            onGetLocation = closure
+            locationManager.requestWhenInUseAuthorization()
+            
+            return
+        }
         
-        locationManager.requestWhenInUseAuthorization()
+        if let location = locationManager.location?.coordinate {
+            
+            closure(location)
+        }
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-    
+        
+        isAutorized = true
+        
         if let location = manager.location?.coordinate {
             
             onGetLocation?(location)

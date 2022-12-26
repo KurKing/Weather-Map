@@ -19,7 +19,7 @@ class RemoteCitiesStorage {
     
     private let baseUrl = URL(string: "https://world-geo-data.p.rapidapi.com/cities/nearby")!
     
-    func fetch(latitude: Double, longitude: Double, minimumCityPopulation: Int = 50000) -> Observable<[City]> {
+    func fetch(latitude: Double, longitude: Double, minimumCityPopulation: Int = 50000) -> Observable<City> {
         
         let parameters: [String: Any] = [
             "latitude": latitude,
@@ -46,7 +46,8 @@ class RemoteCitiesStorage {
                 if let data = response.data, let jsonData = try? JSON(data: data),
                    let cities = jsonData["cities"].array {
                     
-                    observer.onNext(cities.compactMap({ City(json: $0) }))
+                    cities.compactMap({ City(json: $0) })
+                        .forEach({ observer.onNext($0) })
                 }
                 
                 observer.onCompleted()

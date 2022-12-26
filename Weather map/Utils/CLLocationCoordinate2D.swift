@@ -1,5 +1,5 @@
 //
-//  CLLocationCoordinate2D + distance.swift
+//  CLLocationCoordinate2D.swift
 //  Weather map
 //
 //  Created by Oleksii on 24.12.2022.
@@ -30,5 +30,12 @@ extension CLLocation {
     convenience init(coordinate: CLLocationCoordinate2D) {
         
         self.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
+    }
+}
+
+extension CLLocationCoordinate2D: Equatable {
+    
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        lhs.longitude == rhs.longitude && lhs.latitude == rhs.latitude
     }
 }

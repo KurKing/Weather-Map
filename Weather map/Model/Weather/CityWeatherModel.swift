@@ -1,5 +1,5 @@
 //
-//  WeatherList.swift
+//  CityWeatherModel.swift
 //  Weather map
 //
 //  Created by Oleksii on 26.12.2022.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-class WeatherList {
+class CityWeatherModel {
 
-    let cityName: String
+    let city: City
     var weatherList: [WeatherItem]
     
-    init(cityName: String, weatherList: [WeatherItem] = [WeatherItem]()) {
+    init(city: City, weatherList: [WeatherItem] = [WeatherItem]()) {
         
-        self.cityName = cityName
+        self.city = city
         self.weatherList = weatherList
     }
 }
