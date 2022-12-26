@@ -52,6 +52,9 @@ class WeatherPinView: MKAnnotationView {
         pinImageView.addSubview(weatherImageView)
         
         setupConstraints()
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pinTapped))
+        addGestureRecognizer(gestureRecognizer)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,5 +88,12 @@ class WeatherPinView: MKAnnotationView {
                                                   constant: -2),
             weatherImageView.centerXAnchor.constraint(equalTo: pinImageView.centerXAnchor)
         ])
+    }
+    
+    @objc private func pinTapped() {
+        
+        // TODO: - route weather details screen
+        
+        print("Tapped: \(temperatureLabel.text ?? "") \(self.annotation?.coordinate ?? .zero)")
     }
 }

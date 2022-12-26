@@ -14,7 +14,7 @@ class RemoteWeatherStorage {
     
     private let baseUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast")!
     
-    func fetch(latitude: Double, longitude: Double) -> Observable<Int> {
+    func fetch(latitude: Double, longitude: Double) -> Observable<WeatherItem> {
         
         let parameters: [String: Any] = [
             "lat": latitude,
@@ -39,9 +39,9 @@ class RemoteWeatherStorage {
                 
                 if let data = response.data, let jsonData = try? JSON(data: data),
                    let weather = jsonData["list"].array?.first,
-                   let temperature = weather["main"]["temp"].double {
+                   let weatherItem = WeatherItem(json: weather) {
                     
-                    observer.onNext(Int(temperature))
+                    observer.onNext(weatherItem)
                 }
                 
                 observer.onCompleted()

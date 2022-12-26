@@ -32,7 +32,7 @@ class MapViewModel: MapViewModelProtocol {
     private var lastUpdateCoordinate: CLLocationCoordinate2D?
     
     private var cities: [String: City] = [:]
-    private var temperature: [String: Int] = [:]
+    private var weather: [String: WeatherItem] = [:]
     
     init() {
         
@@ -41,12 +41,12 @@ class MapViewModel: MapViewModelProtocol {
 
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData? {
         
-        guard let temperature = temperature[location.stringRepresentation] else {
+        guard let weatherItem = weather[location.stringRepresentation] else {
             
             return nil
         }
         
-        return .init(icon: .sunWithCloudsWeatherIcon, temperature: temperature)
+        return .init(icon: weatherItem.icon, temperature: weatherItem.temperature)
     }
     
     private func bindToMapCenter() {
@@ -87,11 +87,11 @@ class MapViewModel: MapViewModelProtocol {
                         self.cities[city.name] = city
                         
                         self.weatherStorage.fetch(latitude: city.latitude, longitude: city.longitude)
-                            .subscribe(onNext: { [weak self] temperature in
+                            .subscribe(onNext: { [weak self] weatherItem in
                                 
                                 guard let self = self else { return }
                                 
-                                self.temperature[city.location.stringRepresentation] = temperature
+                                self.weather[city.location.stringRepresentation] = weatherItem
                                 self._weatherPinCreationStream.accept(.init(latitude: city.latitude,
                                                                             longitude: city.longitude))
                             }).disposed(by: self.disposeBag)

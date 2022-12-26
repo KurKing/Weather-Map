@@ -6,10 +6,16 @@
 //
 
 import Foundation
+import CoreLocation
+import RxSwift
+import RxRelay
 
 class CitiesService {
     
+    private var lastRemoteFetchCoordinate: CLLocationCoordinate2D?
+    
     func perform() {
-
+        
+        
     }
 }

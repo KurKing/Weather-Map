@@ -11,7 +11,17 @@ extension UIImage {
     
     static var mapPin: UIImage { .init(named: "MapPin-Image")! }
     
-    static var location: UIImage { .init(named: "Location-image")! }
+    static var location: UIImage { .init(named: "Location-Image")! }
     
     static var sunWithCloudsWeatherIcon: UIImage { .init(named: "SunWithClouds-Image")! }
+    
+    static func weatherIcon(with id: Int) -> UIImage {
+        
+        guard let icon = UIImage(named: "Weather-\(id)-icon") else {
+            
+            fatalError("Weather icon with id \(id) not found.")
+        }
+        
+        return icon
+    }
 }
