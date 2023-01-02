@@ -36,7 +36,6 @@
 		49D69BA9295796FA006D68D1 /* RemoteCitiesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BA8295796FA006D68D1 /* RemoteCitiesStorage.swift */; };
 		49D69BAE295797EE006D68D1 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BAD295797EE006D68D1 /* WeatherService.swift */; };
 		49D69BB02957980C006D68D1 /* RemoteWeatherStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BAF2957980C006D68D1 /* RemoteWeatherStorage.swift */; };
-		49D69BB229579819006D68D1 /* LocalWeatherStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BB129579819006D68D1 /* LocalWeatherStorage.swift */; };
 		49D69BB629579FE3006D68D1 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BB529579FE3006D68D1 /* City.swift */; };
 		49D69BBA2959B4BF006D68D1 /* WeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BB92959B4BF006D68D1 /* WeatherItem.swift */; };
 		49D69BBE2959B518006D68D1 /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69BBD2959B518006D68D1 /* MapRouter.swift */; };
@@ -97,7 +96,6 @@
 		49D69BA8295796FA006D68D1 /* RemoteCitiesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCitiesStorage.swift; sourceTree = "<group>"; };
 		49D69BAD295797EE006D68D1 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		49D69BAF2957980C006D68D1 /* RemoteWeatherStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherStorage.swift; sourceTree = "<group>"; };
-		49D69BB129579819006D68D1 /* LocalWeatherStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalWeatherStorage.swift; sourceTree = "<group>"; };
 		49D69BB529579FE3006D68D1 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		49D69BB92959B4BF006D68D1 /* WeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherItem.swift; sourceTree = "<group>"; };
 		49D69BBD2959B518006D68D1 /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
@@ -284,18 +282,9 @@
 				49D69BB92959B4BF006D68D1 /* WeatherItem.swift */,
 				49D69BBF2959BBD4006D68D1 /* CityWeatherModel.swift */,
 				49D69BAD295797EE006D68D1 /* WeatherService.swift */,
-				49D69BB32957981D006D68D1 /* Storage */,
+				49D69BAF2957980C006D68D1 /* RemoteWeatherStorage.swift */,
 			);
 			path = Weather;
-			sourceTree = "<group>";
-		};
-		49D69BB32957981D006D68D1 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				49D69BAF2957980C006D68D1 /* RemoteWeatherStorage.swift */,
-				49D69BB129579819006D68D1 /* LocalWeatherStorage.swift */,
-			);
-			path = Storage;
 			sourceTree = "<group>";
 		};
 		49D69BBB2959B4E1006D68D1 /* Router */ = {
@@ -650,7 +639,6 @@
 				4928D95E294F9313005ABA2B /* MKPointAnnotation + Init.swift in Sources */,
 				49D69B8F2957680C006D68D1 /* UIImage + Constants.swift in Sources */,
 				49B3329129635D8B00A791D0 /* WeatherDetailsRouter.swift in Sources */,
-				49D69BB229579819006D68D1 /* LocalWeatherStorage.swift in Sources */,
 				4928D928294F8F5E005ABA2B /* MapViewController.swift in Sources */,
 				4928D924294F8F5E005ABA2B /* AppDelegate.swift in Sources */,
 				49D69BC52959F13A006D68D1 /* Router.swift in Sources */,
