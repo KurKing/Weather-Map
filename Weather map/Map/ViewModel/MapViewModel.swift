@@ -16,6 +16,7 @@ protocol MapViewModelProtocol {
     var mapCenter: BehaviorRelay<CLLocationCoordinate2D> { get }
     
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData?
+    func cityWeather(for location: CLLocationCoordinate2D) -> CityWeatherModel?
 }
 
 class MapViewModel: MapViewModelProtocol {
@@ -47,6 +48,11 @@ class MapViewModel: MapViewModelProtocol {
         }
         
         return .init(icon: weatherItem.icon, temperature: weatherItem.temperature)
+    }
+    
+    func cityWeather(for location: CLLocationCoordinate2D) -> CityWeatherModel? {
+        
+        return weather[location.stringRepresentation]
     }
     
     private func bindToObservers() {

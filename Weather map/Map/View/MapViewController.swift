@@ -13,7 +13,7 @@ import RxRelay
 
 enum MapConstants {
     
-    static let defaultCameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 500000,
+    static let defaultCameraZoomRange = MKMapView.CameraZoomRange(minCenterCoordinateDistance: 0,
                                                                   maxCenterCoordinateDistance: 500000)
 }
 
@@ -93,7 +93,9 @@ extension MapViewController: MKMapViewDelegate {
             
             guard let self = self else { return }
             
-            self.router.route(to: .weatherDetails, context: self, parameter: location)
+            self.router.route(to: .weatherDetails,
+                              context: self,
+                              parameter: self.viewModel.cityWeather(for: location))
         }
         
         return weatherView

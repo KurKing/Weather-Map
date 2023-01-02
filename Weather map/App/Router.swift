@@ -12,9 +12,18 @@ enum Route {
     
     case back
     case weatherDetails
+    case banner
 }
 
 protocol Router {
 
     func route(to route: Route, context: UIViewController, parameter: Any?)
+}
+
+extension Router {
+    
+    func route(to route: Route, context: UIViewController) {
+        
+        self.route(to: route, context: context, parameter: nil)
+    }
 }

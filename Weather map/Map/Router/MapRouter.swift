@@ -16,7 +16,13 @@ class MapRouter: Router {
             fatalError("MapRouter error: Unknown route")
         }
         
-        // TODO: - present weather details view controller
-        print("TODO print - route to weather details")
+        guard let weatherData = parameter as? CityWeatherModel,
+        let viewModel = WeatherDetailsViewModel(cityWeather: weatherData) else {
+            
+            return
+        }
+
+        context.present(WeatherDetailsViewController.initiate(viewModel: viewModel),
+                        animated: true)
     }
 }
