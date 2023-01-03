@@ -10,6 +10,17 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Bold.ttf">
+            <string>Inter-Bold</string>
+        </array>
+        <array key="Inter-Light.ttf">
+            <string>Inter-Light</string>
+        </array>
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -79,25 +90,25 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40º" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaS-9i-Yyn">
-                                        <rect key="frame" x="0.0" y="70" width="358" height="107.66666666666669"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                        <rect key="frame" x="0.0" y="70" width="358" height="109"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="90"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MARIUPOL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMn-Ha-b91">
-                                        <rect key="frame" x="0.0" y="187.66666666666666" width="358" height="40.666666666666657"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="34"/>
+                                        <rect key="frame" x="0.0" y="189" width="358" height="41.333333333333343"/>
+                                        <fontDescription key="fontDescription" name="Inter-Light" family="Inter" pointSize="34"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1Q-EE-PMJ">
-                                        <rect key="frame" x="0.0" y="248.33333333333331" width="358" height="49"/>
+                                        <rect key="frame" x="0.0" y="250.33333333333331" width="358" height="49"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFx-HF-VtE">
                                                 <rect key="frame" x="20" y="0.0" width="159" height="49"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zZ-hl-Fyp">
-                                                        <rect key="frame" x="49.666666666666671" y="12.666666666666686" width="60" height="24"/>
+                                                        <rect key="frame" x="50" y="12.666666666666686" width="59" height="24"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Humidity-Image" translatesAutoresizingMaskIntoConstraints="NO" id="fc1-S6-g9A">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -108,8 +119,8 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="65%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0y0-Hd-S8d">
-                                                                <rect key="frame" x="24" y="0.0" width="36" height="24"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <rect key="frame" x="24" y="0.0" width="35" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="17"/>
                                                                 <color key="textColor" name="Background-Color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -126,7 +137,7 @@
                                                 <rect key="frame" x="179" y="0.0" width="179" height="49"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Acn-9a-rgp">
-                                                        <rect key="frame" x="46.666666666666657" y="12.666666666666686" width="86" height="24"/>
+                                                        <rect key="frame" x="44.666666666666664" y="12.666666666666686" width="89.666666666666686" height="24"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wind-Image" translatesAutoresizingMaskIntoConstraints="NO" id="pC1-zV-fWm">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -137,8 +148,8 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 km/h" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAg-Yk-ozH">
-                                                                <rect key="frame" x="26.000000000000028" y="0.0" width="60" height="24"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <rect key="frame" x="26.000000000000025" y="0.0" width="63.666666666666657" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="17"/>
                                                                 <color key="textColor" name="Background-Color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -165,22 +176,74 @@
                                             <constraint firstAttribute="centerX" secondItem="QFx-HF-VtE" secondAttribute="trailing" id="xZQ-4I-whj"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szA-Q8-1C6">
+                                        <rect key="frame" x="0.0" y="319.33333333333331" width="60" height="24.333333333333314"/>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb, 24" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkH-F7-bAm">
+                                        <rect key="frame" x="294" y="320.66666666666669" width="64" height="22"/>
+                                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0E0-LJ-twe">
+                                        <rect key="frame" x="0.0" y="343.66666666666669" width="358" height="155"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="155" id="5np-3E-4Du"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Forecast" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrr-41-zoR">
+                                        <rect key="frame" x="0.0" y="508.66666666666657" width="135.66666666666666" height="24.333333333333314"/>
+                                        <fontDescription key="fontDescription" name="Inter-Bold" family="Inter" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SmallCalendar-Image" translatesAutoresizingMaskIntoConstraints="NO" id="4sl-7N-Avw">
+                                        <rect key="frame" x="338" y="511" width="20" height="20"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="DkU-la-iUx"/>
+                                            <constraint firstAttribute="width" constant="20" id="xbl-1a-SQU"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IL3-RD-lUu">
+                                        <rect key="frame" x="0.0" y="543" width="358" height="220"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Yrr-41-zoR" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="1Oa-Ba-PTA"/>
+                                    <constraint firstItem="hkH-F7-bAm" firstAttribute="centerY" secondItem="szA-Q8-1C6" secondAttribute="centerY" id="1hT-al-Jph"/>
                                     <constraint firstAttribute="trailing" secondItem="DG4-nx-OKM" secondAttribute="trailing" id="33G-CC-rG7"/>
+                                    <constraint firstItem="0E0-LJ-twe" firstAttribute="top" secondItem="szA-Q8-1C6" secondAttribute="bottom" id="39m-XN-5eC"/>
                                     <constraint firstItem="UaS-9i-Yyn" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="9bb-Fu-Vso"/>
                                     <constraint firstItem="zMn-Ha-b91" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="BoP-n6-OYb"/>
+                                    <constraint firstItem="0E0-LJ-twe" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="Crh-qI-fzZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="hkH-F7-bAm" secondAttribute="trailing" id="Cx4-z6-wUh"/>
                                     <constraint firstItem="UaS-9i-Yyn" firstAttribute="top" secondItem="tNd-jS-kdc" secondAttribute="bottom" constant="10" id="DUS-Mm-MaU"/>
+                                    <constraint firstItem="IL3-RD-lUu" firstAttribute="top" secondItem="Yrr-41-zoR" secondAttribute="bottom" constant="10" id="MIX-gW-3Mq"/>
                                     <constraint firstItem="zMn-Ha-b91" firstAttribute="top" secondItem="UaS-9i-Yyn" secondAttribute="bottom" constant="10" id="SS9-nu-sOI"/>
                                     <constraint firstItem="tNd-jS-kdc" firstAttribute="top" secondItem="dly-7P-IIE" secondAttribute="top" constant="20" id="V2X-qi-6Cs"/>
                                     <constraint firstItem="tNd-jS-kdc" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="W6F-5C-pdZ"/>
                                     <constraint firstAttribute="trailing" secondItem="zMn-Ha-b91" secondAttribute="trailing" id="b3E-Jk-hEZ"/>
+                                    <constraint firstItem="szA-Q8-1C6" firstAttribute="top" secondItem="x1Q-EE-PMJ" secondAttribute="bottom" constant="20" id="bAb-cQ-ODR"/>
                                     <constraint firstItem="x1Q-EE-PMJ" firstAttribute="top" secondItem="zMn-Ha-b91" secondAttribute="bottom" constant="20" id="jO7-oZ-Pfb"/>
+                                    <constraint firstItem="szA-Q8-1C6" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="jTZ-2B-sVd"/>
+                                    <constraint firstAttribute="trailing" secondItem="IL3-RD-lUu" secondAttribute="trailing" id="mMr-mW-m1Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="IL3-RD-lUu" secondAttribute="bottom" id="mn1-NM-hcn"/>
+                                    <constraint firstAttribute="trailing" secondItem="4sl-7N-Avw" secondAttribute="trailing" id="p6b-Qe-Y2R"/>
+                                    <constraint firstItem="Yrr-41-zoR" firstAttribute="top" secondItem="0E0-LJ-twe" secondAttribute="bottom" constant="10" id="pa9-uz-whq"/>
                                     <constraint firstAttribute="trailing" secondItem="x1Q-EE-PMJ" secondAttribute="trailing" id="qB3-fy-61x"/>
                                     <constraint firstAttribute="trailing" secondItem="UaS-9i-Yyn" secondAttribute="trailing" id="tIC-d1-Tjm"/>
+                                    <constraint firstItem="4sl-7N-Avw" firstAttribute="centerY" secondItem="Yrr-41-zoR" secondAttribute="centerY" id="uy6-f8-4Qp"/>
                                     <constraint firstItem="x1Q-EE-PMJ" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="ymK-Gx-Xtn"/>
                                     <constraint firstItem="DG4-nx-OKM" firstAttribute="top" secondItem="dly-7P-IIE" secondAttribute="top" constant="20" id="yuk-ds-yeE"/>
+                                    <constraint firstAttribute="trailing" secondItem="0E0-LJ-twe" secondAttribute="trailing" id="zJb-mA-Dhg"/>
+                                    <constraint firstItem="IL3-RD-lUu" firstAttribute="leading" secondItem="dly-7P-IIE" secondAttribute="leading" id="zb2-Se-wtL"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -197,9 +260,12 @@
                         <outlet property="bannerImage" destination="tNd-jS-kdc" id="tvj-fX-jzl"/>
                         <outlet property="cityNameLabel" destination="zMn-Ha-b91" id="g8b-fc-f2X"/>
                         <outlet property="closeButton" destination="DG4-nx-OKM" id="obL-PM-FXL"/>
+                        <outlet property="forecastView" destination="IL3-RD-lUu" id="R5R-IM-IHy"/>
                         <outlet property="humidityLabel" destination="0y0-Hd-S8d" id="hhO-4Z-heN"/>
                         <outlet property="temperatureLabel" destination="UaS-9i-Yyn" id="KGR-IQ-azs"/>
+                        <outlet property="todayDateLabel" destination="hkH-F7-bAm" id="2eH-VQ-r6E"/>
                         <outlet property="todayWeatherDetailsView" destination="x1Q-EE-PMJ" id="3Sk-Sn-WoL"/>
+                        <outlet property="todayWeatherView" destination="0E0-LJ-twe" id="pD6-OM-O3w"/>
                         <outlet property="windSpeedLabel" destination="eAg-Yk-ozH" id="ea2-pq-nCg"/>
                     </connections>
                 </viewController>
@@ -211,13 +277,14 @@
     <resources>
         <image name="Banner-Image" width="156" height="77"/>
         <image name="Humidity-Image" width="48" height="49"/>
+        <image name="SmallCalendar-Image" width="40" height="40"/>
         <image name="Wind-Image" width="48" height="49"/>
         <image name="Xmark-Image" width="50" height="50"/>
         <namedColor name="Background-Color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SecondaryBackground-Color">
-            <color red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.11800000071525574" green="0.11800000071525574" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

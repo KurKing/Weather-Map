@@ -26,7 +26,7 @@ class WeatherPinView: MKAnnotationView {
         let label = withAutoloyaut(UILabel())
         
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = .interBold(size: 14)
         
         return label
     }()

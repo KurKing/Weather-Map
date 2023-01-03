@@ -32,25 +32,22 @@ class WeatherDetailsViewController: UIViewController {
     @IBOutlet weak var humidityLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     
+    @IBOutlet weak var todayDateLabel: UILabel!
+    
+    @IBOutlet weak var todayWeatherView: UIView!
+    @IBOutlet weak var forecastView: UIView!
+    
     fileprivate var viewModel: WeatherDetailsViewModelProtocol!
     fileprivate var router: Router!
+    
+    fileprivate var forecastTableViewManager: WeatherForecastTableManager!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        todayWeatherDetailsView.layer.cornerRadius =  20
-        
-        closeButton.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(onCloseButtonTapped)))
-        
-        bannerImage.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(onBannerTapped)))
-        
-        temperatureLabel.text = viewModel.temperature
-        cityNameLabel.text = viewModel.city
-        humidityLabel.text = viewModel.humidity
-        windSpeedLabel.text = viewModel.windSpeed
+        setupSubviews()
+        setData()
     }
     
     @objc private func onCloseButtonTapped() {
@@ -61,5 +58,49 @@ class WeatherDetailsViewController: UIViewController {
     @objc private func onBannerTapped() {
         
         router.route(to: .banner, context: self)
+    }
+}
+
+// MARK: - Subviews
+private extension WeatherDetailsViewController {
+    
+    func setupSubviews() {
+        
+        todayWeatherDetailsView.layer.cornerRadius =  20
+        
+        closeButton.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(onCloseButtonTapped)))
+        
+        bannerImage.addGestureRecognizer(
+            UITapGestureRecognizer(target: self, action: #selector(onBannerTapped)))
+        
+        // Today weather collection view
+        
+        // Forecast table
+        let tableView = withAutoloyaut(UITableView(frame: .zero))
+        
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.tableFooterView = UIView()
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        
+        forecastView.addSubview(tableView)
+        tableView.pinToSuperview()
+        
+        forecastTableViewManager = WeatherForecastTableManager(viewModel: viewModel,
+                                                               tableView: tableView)
+        
+        forecastTableViewManager.setupScroll(for: forecastView.bounds.height)
+    }
+    
+    func setData() {
+        
+        temperatureLabel.text = viewModel.temperature
+        cityNameLabel.text = viewModel.city
+        humidityLabel.text = viewModel.humidity
+        windSpeedLabel.text = viewModel.windSpeed
+        
+        todayDateLabel.text = viewModel.todayDate
     }
 }
