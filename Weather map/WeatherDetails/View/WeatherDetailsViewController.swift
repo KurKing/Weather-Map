@@ -37,10 +37,17 @@ class WeatherDetailsViewController: UIViewController {
     @IBOutlet weak var todayWeatherView: UIView!
     @IBOutlet weak var forecastView: UIView!
     
+    @IBOutlet weak var todayWeatherHeightConstraint: NSLayoutConstraint!
+    fileprivate var todayWeatherViewHeight: CGFloat {
+        
+        todayWeatherHeightConstraint.constant
+    }
+    
     fileprivate var viewModel: WeatherDetailsViewModelProtocol!
     fileprivate var router: Router!
     
     fileprivate var forecastTableViewManager: WeatherForecastTableManager!
+    fileprivate var todayWeatherCollectionViewManager: TodayWeatherCollectionViewManager!
     
     override func viewDidLoad() {
         
@@ -48,6 +55,13 @@ class WeatherDetailsViewController: UIViewController {
         
         setupSubviews()
         setData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        forecastTableViewManager.setupScroll(for: forecastView.bounds.height)
     }
     
     @objc private func onCloseButtonTapped() {
@@ -75,6 +89,26 @@ private extension WeatherDetailsViewController {
             UITapGestureRecognizer(target: self, action: #selector(onBannerTapped)))
         
         // Today weather collection view
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = .zero
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        
+        let collectionView = withAutoloyaut(UICollectionView(frame: .zero,
+                                                             collectionViewLayout: layout))
+        collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .clear
+        collectionView.allowsSelection = false
+        
+        todayWeatherView.addSubview(collectionView)
+        collectionView.pinToSuperview()
+        
+        todayWeatherCollectionViewManager = .init(items: viewModel.todayWeatherForecast,
+                                                  rowHeight: todayWeatherViewHeight,
+                                                  collectionView: collectionView)
         
         // Forecast table
         let tableView = withAutoloyaut(UITableView(frame: .zero))
@@ -84,14 +118,13 @@ private extension WeatherDetailsViewController {
         tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
+        tableView.isScrollEnabled = false
         
         forecastView.addSubview(tableView)
         tableView.pinToSuperview()
         
-        forecastTableViewManager = WeatherForecastTableManager(viewModel: viewModel,
-                                                               tableView: tableView)
-        
-        forecastTableViewManager.setupScroll(for: forecastView.bounds.height)
+        forecastTableViewManager = .init(forecastItems: viewModel.nextDaysForecast,
+                                         tableView: tableView)
     }
     
     func setData() {

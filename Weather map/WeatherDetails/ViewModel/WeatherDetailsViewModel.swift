@@ -38,8 +38,18 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
         todayDateFormatter.string(from: cityWeather.weatherList.first!.date)
     }
     
-    var todayWeatherForecast: [ShortWeatherData] { [] }
-    lazy var nextDaysForecast: [ShortWeatherData] = getForecasts()
+    lazy var todayWeatherForecast: [ShortWeatherData] = {
+        
+        var itemsCount = cityWeather.weatherList.count > 4 ? 4 : cityWeather.weatherList.count
+
+        return cityWeather.weatherList[0..<itemsCount].map({ .init(weatherItem: $0) })
+    }()
+    
+    lazy var nextDaysForecast: [ShortWeatherData] = {
+        
+        forecastFilter(items: cityWeather.weatherList, by: 12)
+            .map({ .init(weatherItem: $0) })
+    }()
     
     private let cityWeather: CityWeatherModel
     
@@ -61,21 +71,8 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
         
         self.cityWeather = cityWeather
     }
-    
-    private func getForecasts() -> [ShortWeatherData] {
-        
-        let forecastFor3Pm = filter(items: cityWeather.weatherList, by: 15)
-        
-        if forecastFor3Pm.count < 4 {
-            
-            return filter(items: cityWeather.weatherList, by: 12)
-                .map({ .init(weatherItem: $0) })
-        }
-        
-        return forecastFor3Pm.map({ .init(weatherItem: $0) })
-    }
-    
-    private func filter(items: [WeatherItem], by hour: Int) -> [WeatherItem] {
+
+    private func forecastFilter(items: [WeatherItem], by hour: Int) -> [WeatherItem] {
         
         return items.filter({
             

@@ -37,6 +37,8 @@
 		49B3328D2963429D00A791D0 /* WeatherDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3328C2963429D00A791D0 /* WeatherDetailsViewModel.swift */; };
 		49B3328F2963458600A791D0 /* ShortWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3328E2963458600A791D0 /* ShortWeatherData.swift */; };
 		49B3329129635D8B00A791D0 /* WeatherDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B3329029635D8B00A791D0 /* WeatherDetailsRouter.swift */; };
+		49D468EC296608FB00719CDC /* TodayWeatherCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D468EB296608FB00719CDC /* TodayWeatherCollectionViewManager.swift */; };
+		49D468EE29660BA800719CDC /* TodayWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D468ED29660BA800719CDC /* TodayWeatherCollectionViewCell.swift */; };
 		49D69B8F2957680C006D68D1 /* UIImage + Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69B8E2957680C006D68D1 /* UIImage + Constants.swift */; };
 		49D69B91295768CB006D68D1 /* WeatherPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69B90295768CB006D68D1 /* WeatherPinView.swift */; };
 		49D69B9529576A71006D68D1 /* MKMapView + Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D69B9429576A71006D68D1 /* MKMapView + Register.swift */; };
@@ -109,6 +111,8 @@
 		49B3328C2963429D00A791D0 /* WeatherDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsViewModel.swift; sourceTree = "<group>"; };
 		49B3328E2963458600A791D0 /* ShortWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortWeatherData.swift; sourceTree = "<group>"; };
 		49B3329029635D8B00A791D0 /* WeatherDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsRouter.swift; sourceTree = "<group>"; };
+		49D468EB296608FB00719CDC /* TodayWeatherCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherCollectionViewManager.swift; sourceTree = "<group>"; };
+		49D468ED29660BA800719CDC /* TodayWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		49D69B8E2957680C006D68D1 /* UIImage + Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Constants.swift"; sourceTree = "<group>"; };
 		49D69B90295768CB006D68D1 /* WeatherPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPinView.swift; sourceTree = "<group>"; };
 		49D69B9429576A71006D68D1 /* MKMapView + Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView + Register.swift"; sourceTree = "<group>"; };
@@ -280,6 +284,24 @@
 			path = Inter;
 			sourceTree = "<group>";
 		};
+		49D468E92966057200719CDC /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				494A93F62964B7C100E7D650 /* WeatherForecastTableManager.swift */,
+				494A93F82964BADF00E7D650 /* WeatherForecastTableViewCell.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
+		49D468EA296608DF00719CDC /* TodayWeather */ = {
+			isa = PBXGroup;
+			children = (
+				49D468EB296608FB00719CDC /* TodayWeatherCollectionViewManager.swift */,
+				49D468ED29660BA800719CDC /* TodayWeatherCollectionViewCell.swift */,
+			);
+			path = TodayWeather;
+			sourceTree = "<group>";
+		};
 		49D69B9829577B0B006D68D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,8 +392,8 @@
 			isa = PBXGroup;
 			children = (
 				49B3328A296340A600A791D0 /* WeatherDetailsViewController.swift */,
-				494A93F62964B7C100E7D650 /* WeatherForecastTableManager.swift */,
-				494A93F82964BADF00E7D650 /* WeatherForecastTableViewCell.swift */,
+				49D468EA296608DF00719CDC /* TodayWeather */,
+				49D468E92966057200719CDC /* Forecast */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -698,6 +720,8 @@
 				494A93FD2964C76F00E7D650 /* Int.swift in Sources */,
 				4928D924294F8F5E005ABA2B /* AppDelegate.swift in Sources */,
 				49D69BC52959F13A006D68D1 /* Router.swift in Sources */,
+				49D468EC296608FB00719CDC /* TodayWeatherCollectionViewManager.swift in Sources */,
+				49D468EE29660BA800719CDC /* TodayWeatherCollectionViewCell.swift in Sources */,
 				49D69BAE295797EE006D68D1 /* WeatherService.swift in Sources */,
 				49B3328D2963429D00A791D0 /* WeatherDetailsViewModel.swift in Sources */,
 				4928D926294F8F5E005ABA2B /* SceneDelegate.swift in Sources */,

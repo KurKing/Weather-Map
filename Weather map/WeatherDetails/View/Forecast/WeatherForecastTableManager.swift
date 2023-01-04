@@ -15,9 +15,9 @@ class WeatherForecastTableManager: NSObject, UITableViewDelegate, UITableViewDat
     private let forecastItems: [ShortWeatherData]
     private weak var tableView: UITableView?
     
-    init(viewModel: WeatherDetailsViewModelProtocol, tableView: UITableView) {
+    init(forecastItems: [ShortWeatherData], tableView: UITableView) {
         
-        self.forecastItems = viewModel.nextDaysForecast
+        self.forecastItems = forecastItems
         self.tableView = tableView
         
         super.init()

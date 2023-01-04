@@ -27,9 +27,13 @@ extension ShortWeatherData {
     
     var hour: String {
         
-        let hour = Calendar.current.component(.hour, from: date)
+        let dateFormatter =  with(DateFormatter()) {
+            
+            $0.dateFormat = "h:mm"
+            $0.locale = .init(identifier: "en_US")
+        }
         
-        return "\(hour).00"
+        return dateFormatter.string(from: date)
     }
     
     var weekDay: String {

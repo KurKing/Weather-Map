@@ -265,6 +265,7 @@
                         <outlet property="temperatureLabel" destination="UaS-9i-Yyn" id="KGR-IQ-azs"/>
                         <outlet property="todayDateLabel" destination="hkH-F7-bAm" id="2eH-VQ-r6E"/>
                         <outlet property="todayWeatherDetailsView" destination="x1Q-EE-PMJ" id="3Sk-Sn-WoL"/>
+                        <outlet property="todayWeatherHeightConstraint" destination="5np-3E-4Du" id="rzN-pW-e1J"/>
                         <outlet property="todayWeatherView" destination="0E0-LJ-twe" id="pD6-OM-O3w"/>
                         <outlet property="windSpeedLabel" destination="eAg-Yk-ozH" id="ea2-pq-nCg"/>
                     </connections>
