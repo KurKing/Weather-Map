@@ -28,7 +28,7 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
     
     var isComeBackAliveBannerHidden = BehaviorRelay<Bool>(value: true)
     
-    var city: String { cityWeather.city.name.uppercased() }
+    var city: String { cityWeather.city.uppercased() }
     var temperature: String { "\(cityWeather.weatherList.first!.temperature)°" }
     var humidity: String { "\(cityWeather.weatherList.first!.humidity)%" }
     var windSpeed: String { "\(cityWeather.weatherList.first!.windSpeed) m/s" }

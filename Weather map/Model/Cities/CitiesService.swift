@@ -13,15 +13,26 @@ import RxRelay
 class CitiesService {
     
     var citiesSteam: Observable<City> { _citiesStream.asObservable() }
+    
     private let _citiesStream = PublishRelay<City>()
     private let disposeBag = DisposeBag()
     
     private let remoteStorage = RemoteCitiesStorage()
-    private var fetchedCoordinates = [CLLocationCoordinate2D]()
+    private let localStorage = LocalCitiesStorage()
+    
+    private lazy var fetchedCoordinates = [CLLocationCoordinate2D]()
+    
+    init() {
+        
+        localStorage.citiesSteam.bind(to: _citiesStream)
+            .disposed(by: disposeBag)
+        
+        localStorage.fetchCities()
+    }
     
     func getCities(for location: CLLocationCoordinate2D) {
         
-        guard isFetchNeeded(for: location) else {
+        guard isRemoteFetchNeeded(for: location) else {
             
             return
         }
@@ -39,16 +50,26 @@ class CitiesService {
                     .map({ $0.distance(from: .init(coordinate: city.location)) })
                     .contains(where: { $0 < 500000 })
             })
-            .bind(to: _citiesStream)
+            .subscribe(onNext: { [weak self] city in
+                
+                self?.localStorage.save(city: city)
+                self?._citiesStream.accept(city)
+            })
             .disposed(by: disposeBag)
     }
     
-    private func isFetchNeeded(for location: CLLocationCoordinate2D) -> Bool {
+    func localCities(for location: CLLocationCoordinate2D) -> [City] {
+        
+        localStorage.cities.filter({$0.location.distance(to: location) < 500000 })
+    }
+    
+    private func isRemoteFetchNeeded(for location: CLLocationCoordinate2D) -> Bool {
         
         guard !fetchedCoordinates.isEmpty else { return true }
         
-        return fetchedCoordinates
-            .map({ CLLocation(coordinate: $0) })
-            .first(where: { $0.distance(from: .init(coordinate: location)) < 250000 }) == nil
+        return fetchedCoordinates.first(where: {
+            
+            $0.distance(to: location) < 250000
+        }) == nil
     }
 }
