@@ -33,6 +33,8 @@ class MapViewController: UIViewController {
         
         setupMapView()
         bindToViewModel()
+        
+        viewModel.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {

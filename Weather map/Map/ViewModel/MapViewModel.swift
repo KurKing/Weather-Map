@@ -21,6 +21,7 @@ protocol MapViewModelProtocol {
     var weatherPinCreationStream: Observable<CLLocationCoordinate2D> { get }
     var mapCenter: BehaviorRelay<CLLocationCoordinate2D> { get }
     
+    func viewDidLoad()
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData?
     func cityWeather(for location: CLLocationCoordinate2D) -> CityWeatherModel?
 }
@@ -61,13 +62,13 @@ class MapViewModel: MapViewModelProtocol {
         
         citiesSevice.citiesSteam.subscribe(onNext: { [weak self] city in
             
-            guard let self = self else { return }
-            
-            if self.mapCenter.value.distance(to: city.location) < 500000 {
-                
-                self.weatherService.fetchWeather(for: city)
-            }
+            self?.weatherService.fetchWeather(for: city)
         }).disposed(by: disposeBag)
+    }
+    
+    func viewDidLoad() {
+        
+        citiesSevice.startFetch()
     }
     
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData? {

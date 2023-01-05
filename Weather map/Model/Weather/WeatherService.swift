@@ -18,14 +18,15 @@ class WeatherService {
     private let _weatherPinCreationStream = BehaviorRelay<CLLocationCoordinate2D?>(value: nil)
     
     private var weather: [String: CityWeatherModel] = [:]
+    
     private let remoteWeatherStorage = RemoteWeatherStorage()
+    private let localWeatherStorage = LocalWeatherStorage()
     
     private let disposeBag = DisposeBag()
     
     private let isRefreshEnabled: Bool
     
     init() {
-        
         let appWasEverLauched = UserDefaults.standard.bool(forKey: "appWasEverLauched")
         UserDefaults.standard.set(true, forKey: "appWasEverLauched")
         
@@ -49,6 +50,18 @@ class WeatherService {
     
     func fetchWeather(for city: City) {
         
+        let localWeather = localWeatherStorage.weather(for: city.name)
+        
+        if !localWeather.isEmpty {
+            
+            self.weather[city.location.stringRepresentation] = .init(city: city.name,
+                                                                     weatherList: localWeather)
+            
+            self._weatherPinCreationStream.accept(city.location)
+            
+            return
+        }
+        
         remoteWeatherStorage
             .fetch(latitude: city.latitude,
                    longitude: city.longitude)
@@ -58,6 +71,11 @@ class WeatherService {
                 
                 self.weather[city.location.stringRepresentation] = .init(city: city.name,
                                                                          weatherList: weatherList)
+                
+                weatherList.forEach({
+                    
+                    self.localWeatherStorage.save(weather: $0, for: city.name)
+                })
                 
                 self._weatherPinCreationStream.accept(city.location)
             }).disposed(by: self.disposeBag)

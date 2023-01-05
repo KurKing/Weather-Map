@@ -20,12 +20,17 @@ class CitiesService {
     private let remoteStorage = RemoteCitiesStorage()
     private let localStorage = LocalCitiesStorage()
     
-    private lazy var fetchedCoordinates = [CLLocationCoordinate2D]()
+    private lazy var fetchedCoordinates = localStorage.fetchedCoordinates
     
     init() {
         
-        localStorage.citiesSteam.bind(to: _citiesStream)
-            .disposed(by: disposeBag)
+        localStorage.citiesSteam.subscribe(onNext: { [weak self] city in
+            
+            self?._citiesStream.accept(city)
+        }).disposed(by: disposeBag)
+    }
+    
+    func startFetch() {
         
         localStorage.fetchCities()
     }
@@ -38,6 +43,7 @@ class CitiesService {
         }
         
         fetchedCoordinates.append(location)
+        localStorage.save(coordinate: location)
         
         remoteStorage.fetch(latitude: location.latitude, longitude: location.longitude)
             .filter({ [weak self] city in

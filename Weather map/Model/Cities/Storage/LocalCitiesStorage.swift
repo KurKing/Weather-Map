@@ -41,9 +41,10 @@ class LocalCitiesStorage {
     
     func save(coordinate: CLLocationCoordinate2D) {
         
+        let realm = realm
         let realmObject = coordinate.realmObject
         
-        try? realm.write({
+        realm.writeAsync({
             
             realm.add(realmObject)
         })
@@ -51,9 +52,10 @@ class LocalCitiesStorage {
     
     func save(city: City) {
         
+        let realm = realm
         let realmObject = city.realmObject
         
-        try? realm.write({
+        realm.writeAsync({
             
             realm.add(realmObject)
         })

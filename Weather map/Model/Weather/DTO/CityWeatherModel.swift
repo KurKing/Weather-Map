@@ -13,6 +13,9 @@ class CityWeatherModel {
     var weatherList: [WeatherItem]
     
     var isOutdated: Bool {
+        
+        // TODO: count only old items
+        
         weatherList.count < 35
     }
     
