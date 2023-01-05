@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xon-k6-Tqt">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="DCy-iG-dTJ">
+                                        <rect key="frame" x="85" y="262.66666666666669" width="220" height="319.00000000000006"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BigMapPin-Image" translatesAutoresizingMaskIntoConstraints="NO" id="Mpe-c8-djT">
+                                                <rect key="frame" x="0.0" y="0.0" width="220" height="260"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="260" id="Yrp-dL-4Yx"/>
+                                                    <constraint firstAttribute="width" constant="220" id="zJz-xD-eZj"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BY #NSString" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bX9-yT-ZgP">
+                                                <rect key="frame" x="11.666666666666671" y="281.99999999999994" width="197" height="37"/>
+                                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="32"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="DarkGray-Color"/>
+                                <constraints>
+                                    <constraint firstItem="DCy-iG-dTJ" firstAttribute="centerY" secondItem="Xon-k6-Tqt" secondAttribute="centerY" id="A6V-Rg-aKj"/>
+                                    <constraint firstItem="DCy-iG-dTJ" firstAttribute="centerX" secondItem="Xon-k6-Tqt" secondAttribute="centerX" id="WtW-KC-rY4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xon-k6-Tqt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P8Y-T5-SdM"/>
+                            <constraint firstAttribute="bottom" secondItem="Xon-k6-Tqt" secondAttribute="bottom" id="UJT-C7-cDG"/>
+                            <constraint firstItem="Xon-k6-Tqt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dqX-Qj-JU6"/>
+                            <constraint firstItem="Xon-k6-Tqt" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="iyJ-X6-NNf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="BigMapPin-Image" width="468" height="539"/>
+        <namedColor name="DarkGray-Color">
+            <color red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
