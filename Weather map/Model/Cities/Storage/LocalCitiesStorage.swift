@@ -50,14 +50,13 @@ class LocalCitiesStorage {
         })
     }
     
-    func save(city: City) {
+    func save(cities: [City]) {
         
         let realm = realm
-        let realmObject = city.realmObject
-        
+
         realm.writeAsync({
             
-            realm.add(realmObject)
+            cities.forEach({ realm.add($0.realmObject) })
         })
     }
 }

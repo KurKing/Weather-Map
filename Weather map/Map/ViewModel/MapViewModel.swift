@@ -52,7 +52,7 @@ class MapViewModel: MapViewModelProtocol {
                 self.citiesSevice.getCities(for: location)
                 
                 if self.lastRefreshedLocation == nil ||
-                self.lastRefreshedLocation!.distance(to: location) > 250000 {
+                self.lastRefreshedLocation!.distance(to: location) > 100000 {
                     
                     let visibleCities = self.citiesSevice.localCities(for: location)
                     self.weatherService.refreshData(for: visibleCities)

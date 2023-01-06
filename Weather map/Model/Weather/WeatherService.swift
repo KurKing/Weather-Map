@@ -32,7 +32,7 @@ class WeatherService {
         
         isRefreshEnabled = appWasEverLauched
     }
-
+    
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData? {
         
         guard let weatherItem = weather[location.stringRepresentation]?.weatherList.first else {
@@ -72,10 +72,7 @@ class WeatherService {
                 self.weather[city.location.stringRepresentation] = .init(city: city.name,
                                                                          weatherList: weatherList)
                 
-                weatherList.forEach({
-                    
-                    self.localWeatherStorage.save(weather: $0, for: city.name)
-                })
+                self.localWeatherStorage.save(weather: weatherList, for: city.name)
                 
                 self._weatherPinCreationStream.accept(city.location)
             }).disposed(by: self.disposeBag)
@@ -85,14 +82,37 @@ class WeatherService {
         
         guard isRefreshEnabled else { return }
         
-        // TODO: - Refresh data
-        
-        cities.forEach({
+        cities.forEach({ city in
             
-            if let weather = weather[$0.location.stringRepresentation],
+            if let weather = weather[city.location.stringRepresentation],
                weather.isOutdated {
                 
-                print("City to refresh: \($0.name)")
+                remoteWeatherStorage
+                    .fetch(latitude: city.latitude,
+                           longitude: city.longitude)
+                    .subscribe(onNext: { [weak self] weatherList in
+                        
+                        guard let self = self,
+                              let cityWeatherList = self.weather[
+                                city.location.stringRepresentation]?.weatherList else {
+                            
+                            return
+                        }
+                        
+                        if let lastItem = cityWeatherList.last {
+                            
+                            let itemsToAdd = weatherList.filter({ $0.date > lastItem.date })
+                
+                            self.weather[city.location.stringRepresentation]?
+                                .weatherList
+                                .append(contentsOf: itemsToAdd)
+                            self.localWeatherStorage.save(weather: itemsToAdd, for: city.name)
+                        } else {
+                            
+                            self.weather[city.location.stringRepresentation]?.weatherList = weatherList
+                            self.localWeatherStorage.save(weather: weatherList, for: city.name)
+                        }
+                    }).disposed(by: self.disposeBag)
             }
         })
     }

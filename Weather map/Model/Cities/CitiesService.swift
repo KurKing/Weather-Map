@@ -46,20 +46,25 @@ class CitiesService {
         localStorage.save(coordinate: location)
         
         remoteStorage.fetch(latitude: location.latitude, longitude: location.longitude)
-            .filter({ [weak self] city in
+            .subscribe(onNext: { [weak self] cities in
                 
-                guard let self = self else { return false }
+                let cities = cities.filter({ [weak self] city in
+                    
+                    guard let self = self else { return false }
+                    
+                    return !self.fetchedCoordinates
+                        .filter({ $0 != location })
+                        .map({ CLLocation(coordinate: $0) })
+                        .map({ $0.distance(from: .init(coordinate: city.location)) })
+                        .contains(where: { $0 < 500000 })
+                })
                 
-                return !self.fetchedCoordinates
-                    .filter({ $0 != location })
-                    .map({ CLLocation(coordinate: $0) })
-                    .map({ $0.distance(from: .init(coordinate: city.location)) })
-                    .contains(where: { $0 < 500000 })
-            })
-            .subscribe(onNext: { [weak self] city in
+                self?.localStorage.save(cities: cities)
                 
-                self?.localStorage.save(city: city)
-                self?._citiesStream.accept(city)
+                cities.forEach({
+                    
+                    self?._citiesStream.accept($0)
+                })
             })
             .disposed(by: disposeBag)
     }

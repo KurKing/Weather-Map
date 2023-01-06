@@ -18,18 +18,28 @@ class LocalWeatherStorage {
     func weather(for city: String) -> [WeatherItem] {
         
         realm.objects(RealmWeatherItem.self)
-            .filter({ $0.cityName == city })
-            .map({ WeatherItem(realmObject: $0) })
+            .filter({ $0.cityName == city  })
+            .compactMap({ city in
+                
+                if Date(timeIntervalSince1970: city.date) < Date() {
+                    
+                    let realm = realm
+                    realm.writeAsync { realm.delete(city) }
+                    
+                    return nil
+                }
+                
+                return WeatherItem(realmObject: city)
+            })
     }
     
-    func save(weather: WeatherItem, for city: String) {
+    func save(weather: [WeatherItem], for city: String) {
         
         let realm = realm
-        let realmObject = weather.realmObject(for: city)
-        
+
         realm.writeAsync({
             
-            realm.add(realmObject)
+            weather.forEach({ realm.add($0.realmObject(for: city)) })
         })
     }
 }
