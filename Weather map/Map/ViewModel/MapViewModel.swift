@@ -16,10 +16,11 @@ struct WeatherMapPinData {
     let temperature: Int
 }
 
-protocol MapViewModelProtocol {
+protocol MapViewModelProtocol: AnyObject {
     
     var weatherPinCreationStream: Observable<CLLocationCoordinate2D> { get }
     var mapCenter: BehaviorRelay<CLLocationCoordinate2D> { get }
+    var onMaintenanceModeEnabled: (()->())?  { get set }
     
     func viewDidLoad()
     func data(for location: CLLocationCoordinate2D) -> WeatherMapPinData?
@@ -35,10 +36,13 @@ class MapViewModel: MapViewModelProtocol {
         weatherService.weatherPinCreationStream
     }
     
+    var onMaintenanceModeEnabled: (()->())? = nil
+    
     private let disposeBag = DisposeBag()
     
     private let citiesSevice = CitiesService()
     private let weatherService = WeatherService()
+    private let maintenanceModeManager = MaintenanceModeManager()
     
     private var lastRefreshedLocation: CLLocationCoordinate2D?
     
@@ -47,7 +51,14 @@ class MapViewModel: MapViewModelProtocol {
         mapCenter.skip(1)
             .subscribe(onNext: { [weak self] location in
                 
-                guard let self = self else { return }
+                guard let self = self,
+                      !self.maintenanceModeManager.maintenanceModeIsEnabled else {
+                    
+                    self?.onMaintenanceModeEnabled?()
+                    self?.onMaintenanceModeEnabled = nil
+                    
+                    return
+                }
                 
                 self.citiesSevice.getCities(for: location)
                 
@@ -62,8 +73,19 @@ class MapViewModel: MapViewModelProtocol {
         
         citiesSevice.citiesSteam.subscribe(onNext: { [weak self] city in
             
-            self?.weatherService.fetchWeather(for: city)
+            guard let self = self,
+                  !self.maintenanceModeManager.maintenanceModeIsEnabled else {
+                
+                self?.onMaintenanceModeEnabled?()
+                self?.onMaintenanceModeEnabled = nil
+                
+                return
+            }
+            
+            self.weatherService.fetchWeather(for: city)
         }).disposed(by: disposeBag)
+        
+        maintenanceModeManager.setup()
     }
     
     func viewDidLoad() {

@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 import SwiftyJSON
+import CoreLocation
 
 class RemoteWeatherStorage {
     
@@ -22,6 +23,11 @@ class RemoteWeatherStorage {
             "appid": Keys.weatherApiKey,
             "units": "metric"
         ]
+        
+        WeatherAnalytics().logFetchWeather(on:
+                                            CLLocationCoordinate2D(latitude: latitude,
+                                                                   longitude: longitude)
+                                                .stringRepresentation)
         
         return Observable.create { [weak self] observer in
             
