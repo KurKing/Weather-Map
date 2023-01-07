@@ -41,7 +41,7 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
     lazy var todayWeatherForecast: [ShortWeatherData] = {
         
         var itemsCount = cityWeather.weatherList.count > 4 ? 4 : cityWeather.weatherList.count
-
+        
         return cityWeather.weatherList[0..<itemsCount].map({ .init(weatherItem: $0) })
     }()
     
@@ -71,7 +71,7 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
         
         self.cityWeather = cityWeather
     }
-
+    
     private func forecastFilter(items: [WeatherItem], by hour: Int) -> [WeatherItem] {
         
         return items.filter({

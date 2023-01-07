@@ -9,6 +9,10 @@ import MapKit
 
 extension CLLocationCoordinate2D {
     
+    static var zero: CLLocationCoordinate2D { .init(latitude: 0, longitude: 0) }
+    
+    var stringRepresentation: String { "\(latitude) \(longitude)" }
+    
     func distance(to coordinate: CLLocationCoordinate2D) -> Double {
         
         let location1 = CLLocation(coordinate: self)
@@ -16,13 +20,6 @@ extension CLLocationCoordinate2D {
         
         return location1.distance(from: location2)
     }
-    
-    static var zero: CLLocationCoordinate2D {
-        
-        .init(latitude: 0, longitude: 0)
-    }
-    
-    var stringRepresentation: String { "\(latitude) \(longitude)" }
 }
 
 extension CLLocation {

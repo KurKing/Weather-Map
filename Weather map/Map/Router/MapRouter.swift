@@ -17,11 +17,11 @@ class MapRouter: Router {
         }
         
         guard let weatherData = parameter as? CityWeatherModel,
-        let viewModel = WeatherDetailsViewModel(cityWeather: weatherData) else {
+              let viewModel = WeatherDetailsViewModel(cityWeather: weatherData) else {
             
             return
         }
-
+        
         context.present(WeatherDetailsViewController.initiate(viewModel: viewModel),
                         animated: true)
     }

@@ -12,7 +12,7 @@ class WeatherForecastTableViewCell: UITableViewCell {
     static let identifier = "WeatherForecastTableViewCell"
     
     private let dayLabel: UILabel = {
-       
+        
         let label = withAutoloyaut(UILabel())
         
         label.textAlignment = .left
@@ -31,7 +31,7 @@ class WeatherForecastTableViewCell: UITableViewCell {
     }()
     
     private let temperatureLabel: UILabel = {
-       
+        
         let label = withAutoloyaut(UILabel())
         
         label.textAlignment = .right
@@ -39,8 +39,9 @@ class WeatherForecastTableViewCell: UITableViewCell {
         
         return label
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
@@ -55,6 +56,7 @@ class WeatherForecastTableViewCell: UITableViewCell {
     }
     
     required init?(coder: NSCoder) {
+        
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -64,7 +66,7 @@ class WeatherForecastTableViewCell: UITableViewCell {
         weatherIconImageView.image = data.icon
         temperatureLabel.text = "\(data.temperature)ºC"
     }
-
+    
     private func addConstraints() {
         
         NSLayoutConstraint.activate([

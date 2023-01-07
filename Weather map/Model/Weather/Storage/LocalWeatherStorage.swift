@@ -49,7 +49,6 @@ class LocalWeatherStorage {
     func save(weather: [WeatherItem], for city: String) {
         
         let realm = realm
-
         realm.writeAsync({
             
             weather.forEach({ realm.add($0.realmObject(for: city)) })

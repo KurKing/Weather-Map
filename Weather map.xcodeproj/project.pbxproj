@@ -20,7 +20,6 @@
 		4928D957294F92B5005ABA2B /* UserLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D956294F92B5005ABA2B /* UserLocationView.swift */; };
 		4928D95A294F92E0005ABA2B /* UIView + Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D959294F92E0005ABA2B /* UIView + Constraints.swift */; };
 		4928D95C294F92F7005ABA2B /* With.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D95B294F92F7005ABA2B /* With.swift */; };
-		4928D95E294F9313005ABA2B /* MKPointAnnotation + Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928D95D294F9313005ABA2B /* MKPointAnnotation + Init.swift */; };
 		494A93E92964AF1400E7D650 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 494A93DD2964AF1400E7D650 /* Inter-Medium.ttf */; };
 		494A93EA2964AF1400E7D650 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 494A93DE2964AF1400E7D650 /* Inter-Light.ttf */; };
 		494A93EB2964AF1400E7D650 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 494A93DF2964AF1400E7D650 /* Inter-Thin.ttf */; };
@@ -97,7 +96,6 @@
 		4928D956294F92B5005ABA2B /* UserLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationView.swift; sourceTree = "<group>"; };
 		4928D959294F92E0005ABA2B /* UIView + Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Constraints.swift"; sourceTree = "<group>"; };
 		4928D95B294F92F7005ABA2B /* With.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = With.swift; sourceTree = "<group>"; };
-		4928D95D294F9313005ABA2B /* MKPointAnnotation + Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKPointAnnotation + Init.swift"; sourceTree = "<group>"; };
 		494A93DD2964AF1400E7D650 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		494A93DE2964AF1400E7D650 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		494A93DF2964AF1400E7D650 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 			children = (
 				4928D95B294F92F7005ABA2B /* With.swift */,
 				4928D959294F92E0005ABA2B /* UIView + Constraints.swift */,
-				4928D95D294F9313005ABA2B /* MKPointAnnotation + Init.swift */,
 				49D69B8E2957680C006D68D1 /* UIImage + Constants.swift */,
 				49D69B9429576A71006D68D1 /* MKMapView + Register.swift */,
 				49D69B9629576CAA006D68D1 /* CLLocationCoordinate2D.swift */,
@@ -754,7 +751,6 @@
 				49D69B9529576A71006D68D1 /* MKMapView + Register.swift in Sources */,
 				494A93F92964BADF00E7D650 /* WeatherForecastTableViewCell.swift in Sources */,
 				49B3328F2963458600A791D0 /* ShortWeatherData.swift in Sources */,
-				4928D95E294F9313005ABA2B /* MKPointAnnotation + Init.swift in Sources */,
 				494A93F52964B02D00E7D650 /* Fonts.swift in Sources */,
 				49D69B8F2957680C006D68D1 /* UIImage + Constants.swift in Sources */,
 				49B3329129635D8B00A791D0 /* WeatherDetailsRouter.swift in Sources */,

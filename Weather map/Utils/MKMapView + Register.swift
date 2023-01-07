@@ -12,7 +12,6 @@ extension MKMapView {
     func register<T: MKAnnotationView>(_: T.Type) {
         
         let identifier = NSStringFromClass(T.self)
-        
         register(T.self, forAnnotationViewWithReuseIdentifier: identifier)
     }
     

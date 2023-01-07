@@ -22,7 +22,7 @@ extension WeatherItem {
     
     func realmObject(for city: String) -> RealmWeatherItem {
         
-        var obj = RealmWeatherItem()
+        let obj = RealmWeatherItem()
         
         obj.temperature = temperature
         obj.windSpeed = windSpeed

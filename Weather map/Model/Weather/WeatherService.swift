@@ -102,10 +102,11 @@ class WeatherService {
                         if let lastItem = cityWeatherList.last {
                             
                             let itemsToAdd = weatherList.filter({ $0.date > lastItem.date })
-                
+                            
                             self.weather[city.location.stringRepresentation]?
                                 .weatherList
                                 .append(contentsOf: itemsToAdd)
+                            
                             self.localWeatherStorage.save(weather: itemsToAdd, for: city.name)
                         } else {
                             

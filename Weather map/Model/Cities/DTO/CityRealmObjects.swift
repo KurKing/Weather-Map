@@ -21,7 +21,7 @@ extension CLLocationCoordinate2D {
     
     var realmObject: RealmCoordinates {
         
-        var obj = RealmCoordinates()
+        let obj = RealmCoordinates()
         
         obj.latitude = latitude
         obj.longitude = longitude
@@ -49,7 +49,7 @@ extension City {
     
     var realmObject: RealmCity {
         
-        var obj = RealmCity()
+        let obj = RealmCity()
         
         obj.name = name
         obj.latitude = latitude

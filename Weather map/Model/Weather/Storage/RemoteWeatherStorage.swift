@@ -39,7 +39,7 @@ class RemoteWeatherStorage {
                 
                 if let data = response.data, let jsonData = try? JSON(data: data),
                    let weather = jsonData["list"].array {
-
+                    
                     observer.onNext(weather.compactMap({ WeatherItem(json: $0) }))
                 }
                 

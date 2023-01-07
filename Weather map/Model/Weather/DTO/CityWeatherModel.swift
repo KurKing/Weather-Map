@@ -8,14 +8,11 @@
 import Foundation
 
 class CityWeatherModel {
-
+    
     let city: String
     var weatherList: [WeatherItem]
     
-    var isOutdated: Bool {
-        
-        weatherList.count < 35
-    }
+    var isOutdated: Bool { weatherList.count < 35 }
     
     init(city: String, weatherList: [WeatherItem] = [WeatherItem]()) {
         
