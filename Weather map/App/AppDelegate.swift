@@ -11,6 +11,8 @@ import Firebase
 import FirebaseCore
 import FirebaseAnalytics
 import FirebaseCrashlytics
+import FirebaseRemoteConfig
+import FirebaseRemoteConfigSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         WeatherAnalytics().logAppLaunched()
+        
+        let remoteConfig = RemoteConfig.remoteConfig()
+        let settings = RemoteConfigSettings()
+        settings.minimumFetchInterval = 0
+        remoteConfig.configSettings = settings
         
         return true
     }

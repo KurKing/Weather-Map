@@ -35,6 +35,11 @@ class MapViewController: UIViewController {
         bindToViewModel()
         
         viewModel.viewDidLoad()
+        
+        viewModel.onMaintenanceModeEnabled = { [weak self] in
+            
+            self?.showMaintenanceAlert()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +76,20 @@ class MapViewController: UIViewController {
         
         mapView.register(UserLocationView.self)
         mapView.register(WeatherPinView.self)
+    }
+    
+    private func showMaintenanceAlert() {
+        
+        let alert = UIAlertController(title: "Maintenance mode is Enabled",
+                                      message: "Sorry, app is not working for now...(",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(.init(title: "Ok", style: .cancel, handler: { [weak self] _ in
+            
+            self?.showMaintenanceAlert()
+        }))
+        
+        present(alert, animated: true)
     }
 }
 
