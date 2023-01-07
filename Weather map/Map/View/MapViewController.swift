@@ -33,6 +33,8 @@ class MapViewController: UIViewController {
         
         setupMapView()
         bindToViewModel()
+        
+        viewModel.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,12 +53,12 @@ class MapViewController: UIViewController {
             .subscribe(on: MainScheduler.instance)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] location in
-            
-            let pin = MKPointAnnotation()
-            pin.coordinate = location
-            
-            self?.mapView.addAnnotation(pin)
-        }).disposed(by: disposeBag)
+                
+                let pin = MKPointAnnotation()
+                pin.coordinate = location
+                
+                self?.mapView.addAnnotation(pin)
+            }).disposed(by: disposeBag)
     }
     
     private func setupMapView() {

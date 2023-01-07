@@ -15,6 +15,7 @@ struct ShortWeatherData {
     let date: Date
     
     init(temperature: Int, iconId: Int, date: Date) {
+        
         self.temperature = temperature
         self.iconId = iconId
         self.date = date

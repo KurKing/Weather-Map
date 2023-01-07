@@ -1,5 +1,5 @@
 //
-//  RemoteCitiesStorage.swift
+//  RemoteWeatherStorage.swift
 //  Weather map
 //
 //  Created by Oleksii on 24.12.2022.
@@ -10,22 +10,17 @@ import Alamofire
 import RxSwift
 import SwiftyJSON
 
-class RemoteCitiesStorage {
+class RemoteWeatherStorage {
     
-    private let headers: HTTPHeaders = [
-        "X-RapidAPI-Key": Keys.cityApiKey,
-        "X-RapidAPI-Host": "world-geo-data.p.rapidapi.com"
-    ]
+    private let baseUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast")!
     
-    private let baseUrl = URL(string: "https://world-geo-data.p.rapidapi.com/cities/nearby")!
-    
-    func fetch(latitude: Double, longitude: Double, minimumCityPopulation: Int = 50000) -> Observable<City> {
+    func fetch(latitude: Double, longitude: Double) -> Observable<[WeatherItem]> {
         
         let parameters: [String: Any] = [
-            "latitude": latitude,
-            "longitude": longitude,
-            "radius": 500,
-            "min_population": minimumCityPopulation
+            "lat": latitude,
+            "lon": longitude,
+            "appid": Keys.weatherApiKey,
+            "units": "metric"
         ]
         
         return Observable.create { [weak self] observer in
@@ -38,16 +33,14 @@ class RemoteCitiesStorage {
             
             AF.request(self.baseUrl,
                        method: .get,
-                       parameters: parameters,
-                       headers: self.headers)
+                       parameters: parameters)
             .validate(statusCode: 200..<300)
             .responseData { response in
                 
                 if let data = response.data, let jsonData = try? JSON(data: data),
-                   let cities = jsonData["cities"].array {
+                   let weather = jsonData["list"].array {
                     
-                    cities.compactMap({ City(json: $0) })
-                        .forEach({ observer.onNext($0) })
+                    observer.onNext(weather.compactMap({ WeatherItem(json: $0) }))
                 }
                 
                 observer.onCompleted()

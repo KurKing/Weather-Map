@@ -27,6 +27,7 @@ class WeatherPinView: MKAnnotationView {
         
         label.textAlignment = .center
         label.font = .interBold(size: 14)
+        label.adjustsFontSizeToFitWidth = true
         
         return label
     }()

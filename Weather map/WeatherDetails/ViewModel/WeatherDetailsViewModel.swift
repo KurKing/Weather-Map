@@ -28,7 +28,7 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
     
     var isComeBackAliveBannerHidden = BehaviorRelay<Bool>(value: true)
     
-    var city: String { cityWeather.city.name.uppercased() }
+    var city: String { cityWeather.city.uppercased() }
     var temperature: String { "\(cityWeather.weatherList.first!.temperature)°" }
     var humidity: String { "\(cityWeather.weatherList.first!.humidity)%" }
     var windSpeed: String { "\(cityWeather.weatherList.first!.windSpeed) m/s" }
@@ -41,7 +41,7 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
     lazy var todayWeatherForecast: [ShortWeatherData] = {
         
         var itemsCount = cityWeather.weatherList.count > 4 ? 4 : cityWeather.weatherList.count
-
+        
         return cityWeather.weatherList[0..<itemsCount].map({ .init(weatherItem: $0) })
     }()
     
@@ -71,7 +71,7 @@ class WeatherDetailsViewModel: WeatherDetailsViewModelProtocol {
         
         self.cityWeather = cityWeather
     }
-
+    
     private func forecastFilter(items: [WeatherItem], by hour: Int) -> [WeatherItem] {
         
         return items.filter({

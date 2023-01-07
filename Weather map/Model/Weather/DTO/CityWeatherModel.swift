@@ -8,11 +8,13 @@
 import Foundation
 
 class CityWeatherModel {
-
-    let city: City
+    
+    let city: String
     var weatherList: [WeatherItem]
     
-    init(city: City, weatherList: [WeatherItem] = [WeatherItem]()) {
+    var isOutdated: Bool { weatherList.count < 35 }
+    
+    init(city: String, weatherList: [WeatherItem] = [WeatherItem]()) {
         
         self.city = city
         self.weatherList = weatherList

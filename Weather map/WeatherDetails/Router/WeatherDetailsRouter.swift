@@ -21,6 +21,7 @@ class WeatherDetailsRouter: Router {
         if route == .banner {
             
             if let url = URL(string: "https://savelife.in.ua/en/") {
+                
                 UIApplication.shared.open(url)
             }
             

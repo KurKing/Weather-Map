@@ -12,7 +12,7 @@ class TodayWeatherCollectionViewCell: UICollectionViewCell {
     static let identifier = "TodayWeatherCollectionViewCell"
     
     private let temperatureLabel: UILabel = {
-       
+        
         let label = withAutoloyaut(UILabel())
         
         label.textAlignment = .right
@@ -31,7 +31,7 @@ class TodayWeatherCollectionViewCell: UICollectionViewCell {
     }()
     
     private let timeLabel: UILabel = {
-       
+        
         let label = withAutoloyaut(UILabel())
         
         label.textAlignment = .right

@@ -9,6 +9,7 @@ target 'Weather map' do
   pod 'RxCocoa', '6.5.0'
   pod 'Alamofire'
   pod 'SwiftyJSON', '~> 4.0'
+  pod 'RealmSwift', '~>10'
 
   target 'Weather mapTests' do
     inherit! :search_paths
@@ -16,6 +17,7 @@ target 'Weather map' do
     pod 'RxTest', '6.5.0'
     pod 'Alamofire'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'RealmSwift', '~>10'
   end
 
   target 'Weather mapUITests' do
@@ -23,6 +25,7 @@ target 'Weather map' do
     pod 'RxTest', '6.5.0'
     pod 'Alamofire'
     pod 'SwiftyJSON', '~> 4.0'
+    pod 'RealmSwift', '~>10'
   end
 
 end
