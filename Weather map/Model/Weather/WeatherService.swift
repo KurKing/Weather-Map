@@ -94,7 +94,8 @@ class WeatherService {
                         
                         guard let self = self,
                               let cityWeatherList = self.weather[
-                                city.location.stringRepresentation]?.weatherList else {
+                                city.location.stringRepresentation]?.weatherList
+                            .sorted(by: { $0.date < $1.date }) else {
                             
                             return
                         }
