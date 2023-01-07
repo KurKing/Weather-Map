@@ -41,6 +41,8 @@ class MapViewController: UIViewController {
         
         super.viewDidAppear(animated)
         
+        WeatherAnalytics().logMapAppeared()
+        
         locationManager.requestAuthorization { [weak self] location in
             
             self?.mapView.setCenter(location, animated: true)

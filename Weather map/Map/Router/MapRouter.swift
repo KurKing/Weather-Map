@@ -22,6 +22,8 @@ class MapRouter: Router {
             return
         }
         
+        WeatherAnalytics().logOpenCityDetailsEvent(city: viewModel.city)
+        
         context.present(WeatherDetailsViewController.initiate(viewModel: viewModel),
                         animated: true)
     }

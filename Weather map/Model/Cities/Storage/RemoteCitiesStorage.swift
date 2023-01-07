@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 import SwiftyJSON
+import CoreLocation
 
 class RemoteCitiesStorage {
     
@@ -27,6 +28,11 @@ class RemoteCitiesStorage {
             "radius": 500,
             "min_population": minimumCityPopulation
         ]
+        
+        WeatherAnalytics().logFetchCity(on:
+                                            CLLocationCoordinate2D(latitude: latitude,
+                                                                   longitude: longitude)
+                                                .stringRepresentation)
         
         return Observable.create { [weak self] observer in
             

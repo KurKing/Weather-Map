@@ -7,6 +7,10 @@
 
 import UIKit
 import RealmSwift
+import Firebase
+import FirebaseCore
+import FirebaseAnalytics
+import FirebaseCrashlytics
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Realm file: \(realmFileUrl)")
         }
         #endif
+        
+        FirebaseApp.configure()
+        
+        WeatherAnalytics().logAppLaunched()
         
         return true
     }
