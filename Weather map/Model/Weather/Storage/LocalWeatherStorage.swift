@@ -18,7 +18,7 @@ class LocalWeatherStorage {
     func weather(for city: String) -> [WeatherItem] {
         
         realm.objects(RealmWeatherItem.self)
-            .filter({ $0.cityName == city  })
+            .where({ $0.cityName == city  })
             .compactMap({ city in
                 
                 if Date(timeIntervalSince1970: city.date) < Date() {
